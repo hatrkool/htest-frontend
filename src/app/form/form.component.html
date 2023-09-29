@@ -1,0 +1,32 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <div>Please enter your name and pick the Sectors you are currently involved in.</div>
+  <br>
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" formControlName="name">
+    <div *ngIf="formGroup.controls['name'].invalid" class="error-message">
+      {{ nameErrorMessage }}
+    </div>
+  </div>
+  <br>
+  <div>
+    <label for="sector">Sectors:</label>
+    <select id="sector" formControlName="sectorSelection" multiple size="5">
+      <option *ngFor="let sector of sectors" [value]="sector.nodeValue" [innerHTML]="sector.nodeName"></option>
+    </select>
+    <div *ngIf="formGroup.controls['sectorSelection'].invalid" class="error-message">
+      {{ sectorErrorMessage }}
+    </div>
+  </div>
+  <br>
+  <div>
+    <input type="checkbox" id="agree" formControlName="agreeToTerms">
+    <label for="agree">Agree to terms</label>
+    <div *ngIf="formGroup.controls['agreeToTerms'].invalid" class="error-message">
+      {{ agreeErrorMessage }}
+    </div>
+  </div>
+  <br>
+  <button type="submit">Save</button>
+</form>
+
